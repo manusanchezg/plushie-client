@@ -1,0 +1,23 @@
+.Shop {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 30px;
+}
+
+.products {
+    grid-column: 4 / 13;
+    grid-row: 1 / 12;
+}
+
+.pagination {
+    grid-column: 1 / 13;
+    grid-row: 13;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.side-bar {
+    grid-column: 1 / 4;
+    grid-row: 1 / 12;
+}

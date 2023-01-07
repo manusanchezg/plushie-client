@@ -1,0 +1,13 @@
+.logo {
+    width: 40px;
+}
+
+.logo:first-child{
+    margin-left: 25px;
+}
+
+.logo-conainter {
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+}

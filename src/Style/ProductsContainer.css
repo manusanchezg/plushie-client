@@ -1,0 +1,41 @@
+.products {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.favourite-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    cursor: pointer;
+    background-image: url("../assets/star.svg");
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.button-container span {
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-left: 10px;
+}
+
+.favourite {
+    background-image: url("../assets/filed-star.svg");
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+} 
+
+.product.card > img {
+    padding: 20px;
+}

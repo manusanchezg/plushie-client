@@ -1,0 +1,81 @@
+.side-bar {
+    height: calc(100vh - 100px);
+    background-color: #F8F9FA;
+    margin: 10px;
+    transition: .5s;
+    position: sticky;
+    top: 10px;
+}
+
+.filter-container {
+    transition: .5s;
+}
+
+.filter-container > * {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.filter-container > div {
+    display: flex;
+    flex-direction: row;
+}
+
+#lowPrice, #highPrice {
+    width: 60px;
+    margin: auto 10px;
+    padding: 0px 5px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  appearance: none;
+    -webkit-appearance: none; 
+  -moz-appearance: textfield;
+  margin: 0; 
+}
+
+.filter-container label {
+    margin-right: 10px;
+}
+
+.burger {
+    background-color: #141115;
+    height: 40px;
+    width: 40px;
+    margin: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.line {
+    background-color: white;
+    height: 4px;
+    width: 24px;
+    border-radius: 2px;
+    transition: .5s;
+}
+
+.active .line:nth-child(1){
+    transform: translateY(7px) rotate(135deg);
+}
+.active .line:nth-child(2){
+    transform: scale(0);
+}
+.active .line:nth-child(3){
+    transform: translateY(-9px) rotate(-135deg);
+}
+
+.hidden {
+    transform: scale(0);
+}
+
+.smaller {
+    width: 70px;
+}

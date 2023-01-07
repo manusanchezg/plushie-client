@@ -1,0 +1,53 @@
+.products-container {
+    overflow-x: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* .products-container::-webkit-scrollbar {
+    display: none;
+} */
+
+.products .product,
+.products-container .product {
+    margin: 20px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+#navbarScroll p {
+    margin-bottom: 0;
+}
+
+.login-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin: 15px;
+}
+
+.login-container button {
+    width: 100px;
+}
+
+.sign-modal>div {
+    padding: 10px 20px;
+}
+
+.sign-modal p {
+    text-align: center;
+}
+
+.sign-modal button[type="submit"] {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.signup span {
+    color: blue;
+    cursor: pointer;
+}

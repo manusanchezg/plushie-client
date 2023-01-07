@@ -11,3 +11,52 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.portal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 20px;
+}
+
+.portal div {
+  width: 100%;
+}
+
+.modal-content {
+  min-height: 60vh;
+}
+
+.main-modal {
+  min-width: 80%;
+  min-height: 60vh;
+}
+
+.select {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.select select {
+  width: 100px;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+.select label {
+  width: 100px;
+}
+
+.carousel-indicators {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.carousel-caption {
+  right: 0;
+  left: 0;
+}
