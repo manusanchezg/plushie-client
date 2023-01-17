@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Importing style
@@ -14,20 +14,20 @@ import "./Style/MinWishlistCard.css";
 
 // Importing components
 //////////////////////////////
-import HomePage from "./Home/HomePage";
-import Navigation from "./Home/Navigation";
-import LoginNav from "./Home/LoginNav";
-import LogIn from "./Home/Login";
-import SignUp from "./Home/Signup";
+import HomePage from "./Components/Home/HomePage";
+import Navigation from "./Components/Home/Navigation";
+import LoginNav from "./Components/Home/LoginNav";
+import LogIn from "./Components/Home/Login";
+import SignUp from "./Components/Home/Signup";
 
-import Shop from "./Shop/Shop";
-import ProductDetail from "./Shop/ProductDetail";
+import Shop from "./Components/Shop/Shop";
+import ProductDetail from "./Components/Product/ProductDetail";
 
-import Profile from "./Profile/Profile";
+import Profile from "./Components/Profile/Profile";
 
-import Wishlist from "./Wishlist/Wishlist";
+import Wishlist from "./Components/Wishlist/Wishlist";
 
-import ShoppingCart from "./Order/ShoppingCart";
+import ShoppingCart from "./Components/ShoppingCart/ShoppingCart";
 
 import API from "./api";
 //////////////////////////////
@@ -35,7 +35,6 @@ import API from "./api";
 function App() {
   const api = new API();
 
-  const [products, setProducts] = useState([]);
   const [productDetail, setProductDetail] = useState({});
   const [wishlist, setWishlist] = useState([]);
   const [loginStatus, setLoginStatus] = useState({});
@@ -43,32 +42,29 @@ function App() {
   ////////////////////////
   // Showing and hiding Product Detail pop-up
   const [showDetail, setShowDetail] = useState(false);
-  const handleCloseDetail = () => setShowDetail(false);
   const handleShowDetail = () => setShowDetail(true);
-  
+
   // Showing and hiding Wishlist pop-up
   const [showWishlist, setShowWishlist] = useState(false);
   const handleCloseWishlist = () => setShowWishlist(false);
   const handleShowWishlist = () => setShowWishlist(true);
-  
+
   // Showing and hiding Sign up pop-up
   const [showSignUp, setSignUp] = useState(false);
-  const handleCloseSignUp = () => setSignUp(false);
   const handleShowSignUp = () => setSignUp(true);
-  
+
   // Showing and hiding Log in pop-up
   const [showLogIn, setLogIn] = useState(false);
-  const handleCloseLogIn = () => setLogIn(false);
   const handleShowLogIn = () => setLogIn(true);
-/////////////////////////////
+  /////////////////////////////
+
+  const isLoggedIn = useCallback(async () => {
+    const result = await api.isLoggedIn();
+    setLoginStatus(result);
+  });
 
   useEffect(() => {
-    api.isLoggedIn(setLoginStatus);
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    api.getProducts().then((res) => setProducts(res));
+    isLoggedIn();
     // eslint-disable-next-line
   }, []);
 
@@ -89,16 +85,16 @@ function App() {
         loginStatus={loginStatus}
       />
       <Navigation handleShow={handleShowWishlist} />
-      {productDetail && Object.keys(productDetail).length ?
-      <ProductDetail
-      handleShow={handleShowDetail}
-      show={showDetail}
-      productDetail={productDetail}
-      handleClose={handleCloseDetail}
-      loginStatus={loginStatus}
-      />
-    : null
-    }
+      {productDetail && Object.keys(productDetail).length ? (
+        <ProductDetail
+          handleShow={handleShowDetail}
+          show={showDetail}
+          productDetail={productDetail}
+          loginStatus={loginStatus}
+          setShowDetail={setShowDetail}
+          setProductDetail={setProductDetail}
+        />
+      ) : null}
       <Wishlist
         handleShow={handleShowWishlist}
         show={showWishlist}
@@ -109,13 +105,13 @@ function App() {
         setProductDetail={setProductDetail}
       />
       <LogIn
-        handleClose={handleCloseLogIn}
+        setLogIn={setLogIn}
         show={showLogIn}
         handleShowSignUp={handleShowSignUp}
         loginStatus={loginStatus}
         setLoginStatus={setLoginStatus}
       />
-      <SignUp handleClose={handleCloseSignUp} show={showSignUp} />
+      <SignUp setSignUp={setSignUp} show={showSignUp} />
       <Routes>
         <Route
           exact
@@ -137,11 +133,9 @@ function App() {
             <Shop
               handleShow={handleShowDetail}
               setProductDetail={setProductDetail}
-              products={products}
               loginStatus={loginStatus}
               wishlist={wishlist}
               setWishlist={setWishlist}
-              setProducts={setProducts}
             />
           }
         />
